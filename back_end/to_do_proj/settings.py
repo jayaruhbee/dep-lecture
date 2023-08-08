@@ -14,18 +14,22 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+from dotenv import load_dotenv
+import os
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
+load_dotenv()
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-hb+2h+0n&e&76r!d@hi#pp%6^-ma1c7sl$l4y5w(m$9*^j)#o8'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+DEBUG = False
+# CHANGED TO ALL SO WHEN WE DEPLOY OUR SITE WE CAN CHECK IT IS WORKING PROPERLY
+ALLOWED_HOSTS = ["*"]
+# TELLING MY DJANGO PROJECT AN EXTRA LEVEL OF SECURITY WHO IS ABLE TO INTERACT WITH IT
+CSRF_TRUSTED_ORIGINS = [""]
+# WHAT OTHER DOMAINS AM I ABLE TO INTERACT WITH 
 CORS_ALLOW_ALL_ORIGINS = True
 
 INSTALLED_APPS = [
